@@ -1,0 +1,16 @@
+{
+  "name": "scalingo-express-starter",
+  "version": "1.0.0",
+  "description": "Express starter for Scalingo TP",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
