@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
  * PARTIE A: ROUTE /HEALTH
  */
 app.get('/health', (req, res) => {
-  res.json({ status: 'Pas OK' });
+  res.json({ status: 'PAS OK' });
 });
 
 /**
