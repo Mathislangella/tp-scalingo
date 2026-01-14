@@ -7,8 +7,8 @@ const app = express();
  * Tu dois afficher MESSAGE_BIENVENUE et DEBUG ici.
  */
 app.get('/', (req, res) => {
-  const message = "Tu dois compléter";
-  const debug = "Tu dois compléter";
+  const message = process.env.MESSAGE_BIENVENUE;
+  const debug = process.env.DEBUG;
 
   res.send(`
     <h1>${message}</h1>
