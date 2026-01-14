@@ -31,8 +31,13 @@ app.get('/health', (req, res) => {
  */
 app.get('/db', async (req, res) => {
   try {
-    // Exemple de requête: await pool.query('SELECT NOW()');
-    res.send("Route /db : Tu dois compléter l'implémentation !");
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS visits (
+        id SERIAL PRIMARY KEY,
+        count INTEGER DEFAULT 0,
+        last_visit TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
   } catch (err) {
     console.error(err);
     res.status(500).send(err.message);
