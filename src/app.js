@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
  * PARTIE A: ROUTE /HEALTH
  */
 app.get('/health', (req, res) => {
-  res.json({ status: 'PAS OK' });
+  res.json({ status: 'OK' });
 });
 
 /**
@@ -30,14 +30,22 @@ app.get('/health', (req, res) => {
  * Tu dois implémenter une lecture ou écriture en base.
  */
 app.get('/db', async (req, res) => {
+
   try {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS visits (
-        id SERIAL PRIMARY KEY,
-        count INTEGER DEFAULT 0,
-        last_visit TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
+    con.connect(function(err) {
+      if (err) throw err;
+      con.query("SELECT nb_visite FROM DB", function (err, result, fields) {
+        if (err) throw err;
+          const sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+          con.execute(`UPDATE DB SET nb_visite ${result}`);
+      });
+    });
+
+    con.query("SELECT nb_visite FROM DB", function (err, result, fields) {
+      if (err) throw err;
+      res.send(`Route /db : site visiter ${result}.`);
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).send(err.message);
